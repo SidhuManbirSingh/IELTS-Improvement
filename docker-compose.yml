@@ -1,0 +1,16 @@
+services:
+  ielts-coach:
+    build: .
+    container_name: ielts-task2-coach
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    volumes:
+      - ./practice_history.md:/app/practice_history.md
+      - ./index.html:/app/index.html
+      - ./server.py:/app/server.py
+    restart: unless-stopped

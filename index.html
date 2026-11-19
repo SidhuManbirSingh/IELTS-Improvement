@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Band7.5+ Studio — Personal IELTS Task 2 Coach</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --page-ground: #ffffff;
+      --surface: #f7f6f6;
+      --primary-text: #201f20;
+      --secondary-text: #494949;
+      --muted-text: #606060;
+      --inverse-text: #fcfcfd;
+      --accent: #2e5bff;
+      --accent-hover: #1f47db;
+      --hairline: #e0e0df;
+      --radius-surface: 8px;
+      --radius-pill: 9999px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Host Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--page-ground);
+      color: var(--primary-text);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 24px 56px 24px;
+    }
+
+    /* Simple Inset Header */
+    .site-header {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-pill);
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      margin: 0 auto 24px auto;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-mark {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--primary-text);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .brand-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      background: var(--page-ground);
+      border: 1px solid var(--hairline);
+      color: var(--secondary-text);
+    }
+
+    .status-pill::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* Simple Compact Hero */
+    .hero-compact {
+      text-align: center;
+      margin: 0 auto 28px auto;
+      max-width: 720px;
+    }
+
+    .hero-compact h1 {
+      font-size: clamp(28px, 3.2vw, 40px);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      margin: 0 0 8px 0;
+    }
+
+    .hero-compact p {
+      margin: 0;
+      color: var(--secondary-text);
+      font-size: 16px;
+    }
+
+    /* Controls & Inputs */
+    .pill-btn {
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .pill-btn-primary {
+      background: var(--accent);
+      color: var(--inverse-text);
+    }
+
+    .pill-btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .pill-btn-secondary {
+      background: var(--page-ground);
+      color: var(--primary-text);
+      border-color: var(--hairline);
+    }
+
+    .pill-btn-secondary:hover {
+      background: #efeeee;
+    }
+
+    .pill-btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .pill-btn:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--secondary-text);
+      margin-bottom: 6px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--primary-text);
+      background: var(--page-ground);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-surface);
+      padding: 10px 12px;
+      line-height: 1.5;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    /* Control Bar + Active Prompt Card */
+    .controls-card {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-surface);
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+
+    .controls-row {
+      display: grid;
+      grid-template-columns: 1.2fr 1.2fr auto;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .controls-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .controls-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .prompt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+
+    .hint-box {
+      margin-top: 12px;
+      padding: 12px 14px;
+      background: var(--page-ground);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-surface);
+      font-size: 14px;
+      color: var(--secondary-text);
+      white-space: pre-wrap;
+    }
+
+    /* Workspace Tabs */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .tab-pill {
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      background: var(--surface);
+      color: var(--secondary-text);
+      border: 1px solid var(--hairline);
+      cursor: pointer;
+    }
+
+    .tab-pill.active {
+      background: var(--primary-text);
+      color: var(--inverse-text);
+      border-color: var(--primary-text);
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* Writing Section Cards */
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-surface);
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--primary-text);
+    }
+
+    .section-meta {
+      font-size: 13px;
+      color: var(--muted-text);
+    }
+
+    .section-guide {
+      font-size: 14px;
+      color: var(--secondary-text);
+      margin-bottom: 10px;
+    }
+
+    .section-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .feedback-box {
+      margin-top: 14px;
+      background: var(--page-ground);
+      border: 1px solid var(--hairline);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius-surface);
+      padding: 14px 16px;
+      font-size: 14.5px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      color: var(--primary-text);
+    }
+
+    .error-banner {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: var(--radius-surface);
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+      font-size: 14px;
+      display: none;
+    }
+
+    .timer-strip {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-surface);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .timer-readout {
+      margin-left: auto;
+      font-size: 24px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--primary-text);
+    }
+
+    .history-pre {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-surface);
+      padding: 18px;
+      white-space: pre-wrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13.5px;
+      line-height: 1.55;
+      max-height: 70vh;
+      overflow-y: auto;
+      color: var(--primary-text);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Compact Header -->
+    <header class="site-header">
+      <a href="/" class="brand-mark">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Band7.5+ Studio · Personal Task 2 Coach</span>
+      </a>
+    </header>
+
+    <!-- Simple Heading -->
+    <section class="hero-compact">
+      <h1>Move from Band 6.5 to 7.5+</h1>
+      <p>Write each section or a full 40-minute essay below. Every review and rewrite is saved automatically to
+        <code>practice_history.md</code>.</p>
+    </section>
+
+    <!-- Topic & Controls Right Above Writing Area -->
+    <section class="controls-card">
+      <div class="controls-row">
+        <div>
+          <label for="essayType">Task 2 Essay Type</label>
+          <select id="essayType">
+            <option>Opinion (Agree / Disagree)</option>
+            <option>Discuss Both Views + Opinion</option>
+            <option>Problem–Solution</option>
+            <option>Causes & Effects</option>
+            <option>Advantages vs. Disadvantages</option>
+            <option>Double Question</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="modelSelect">Gemini Model</label>
+          <select id="modelSelect">
+            <option value="gemini-3.5-flash-lite">gemini-3.5-flash-lite (Fast &amp; Reliable)</option>
+            <option value="gemini-3.8-flash">gemini-3.8-flash (Standard)</option>
+          </select>
+        </div>
+
+        <div>
+          <button id="generateTopicBtn" class="pill-btn pill-btn-primary" onclick="generateNewTopic()">
+            Generate New Topic
+          </button>
+        </div>
+      </div>
+
+      <div class="prompt-header">
+        <span class="eyebrow" id="activeTypeLabel">ESSAY TYPE · Opinion (Agree / Disagree)</span>
+        <span class="section-meta">You can also paste or edit your own prompt below</span>
+      </div>
+      <textarea id="topicInput"
+        rows="2">Some people think that children should learn to cook at school. To what extent do you agree or disagree?</textarea>
+      <div id="planningHintBox" class="hint-box" style="display:none;"></div>
+      <div id="globalError" class="error-banner"></div>
+    </section>
+
+    <!-- Writing Workspace Directly Below -->
+    <div class="tabs">
+      <button class="tab-pill active" onclick="switchTab('sections', this)">1. Practice 4 Sections Individually</button>
+      <button class="tab-pill" onclick="switchTab('full', this)">2. Full Essay (40-Min Timer)</button>
+      <button class="tab-pill" onclick="switchTab('history', this)">3. History Log (practice_history.md)</button>
+    </div>
+
+    <!-- Tab 1: 4 Individual Sections -->
+    <div id="tab-sections" class="tab-panel active">
+      <div id="sectionsContainer"></div>
+
+      <div class="section-card">
+        <div class="section-head">
+          <span class="section-title">Combined 4-Paragraph Essay Preview</span>
+          <span class="section-meta" id="combinedWc">0 words total</span>
+        </div>
+        <textarea id="combinedPreview" rows="6" readonly
+          placeholder="Your assembled 4-paragraph essay appears here as you write each section above..."></textarea>
+      </div>
+    </div>
+
+    <!-- Tab 2: Full Timed Essay -->
+    <div id="tab-full" class="tab-panel">
+      <div class="timer-strip">
+        <button class="pill-btn pill-btn-primary" onclick="startTimer()">Start 40-Min Timer</button>
+        <button class="pill-btn pill-btn-secondary" onclick="resetTimer()">Reset Timer</button>
+        <span class="section-meta">Aim for 260–290 words (Minimum 250)</span>
+        <div class="timer-readout" id="timerDisplay">40:00</div>
+      </div>
+
+      <div class="section-card">
+        <label for="fullEssayInput">Write your complete 4-paragraph Task 2 essay:</label>
+        <textarea id="fullEssayInput" rows="13" oninput="updateFullWc()"
+          placeholder="Write your Introduction, Body Paragraph 1 (PEEL), Body Paragraph 2 (PEEL), and Conclusion..."></textarea>
+        <div class="section-foot">
+          <span class="section-meta" id="fullWcBadge">Total Word Count: <strong>0 words</strong> · Attempts: <strong
+              id="fullAttemptCount">0</strong></span>
+          <button id="fullReviewBtn" class="pill-btn pill-btn-primary" onclick="reviewFullEssay()">Grade Full
+            Essay</button>
+        </div>
+        <div id="fullFeedbackBox" class="feedback-box" style="display:none;"></div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Live practice_history.md Viewer -->
+    <div id="tab-history" class="tab-panel">
+      <div
+        style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:10px;">
+        <span class="section-meta">Auto-recorded log from <code id="historyFullPath">practice_history.md</code></span>
+        <div style="display:flex; gap:10px;">
+          <button class="pill-btn pill-btn-secondary" onclick="loadHistory()">Refresh Log</button>
+          <button class="pill-btn pill-btn-primary" onclick="downloadHistory()">Download practice_history.md</button>
+        </div>
+      </div>
+      <div id="historyContent" class="history-pre">Loading history...</div>
+    </div>
+  </div>
+
+  <script>
+    const SECTIONS = [
+      {
+        id: "intro",
+        name: "Introduction",
+        guide: "2–3 sentences (~40–55 words): Paraphrase the prompt accurately + clear thesis answering EVERY part and previewing 2 main ideas."
+      },
+      {
+        id: "body1",
+        name: "Body Paragraph 1 (PEEL)",
+        guide: "5–6 sentences (~90–105 words): Point (topic sentence) → Explain (why/how) → Example (concrete) → Link (tie back to thesis)."
+      },
+      {
+        id: "body2",
+        name: "Body Paragraph 2 (PEEL)",
+        guide: "5–6 sentences (~90–105 words): Second distinct main idea using Point → Explain → Example → Link."
+      },
+      {
+        id: "conclusion",
+        name: "Conclusion",
+        guide: "2 sentences (~35–45 words): Restate thesis in fresh words + summarize both main points without new ideas."
+      }
+    ];
+
+    const state = {
+      sectionAttempts: { intro: 0, body1: 0, body2: 0, conclusion: 0 },
+      sectionFeedback: { intro: "", body1: "", body2: "", conclusion: "" },
+      fullAttempts: 0,
+      fullFeedback: "",
+      historyMd: "",
+      timerSeconds: 40 * 60,
+      timerInterval: null
+    };
+
+    function showError(msg) {
+      const box = document.getElementById("globalError");
+      if (!msg) {
+        box.style.display = "none";
+        box.textContent = "";
+      } else {
+        box.style.display = "block";
+        box.textContent = msg;
+      }
+    }
+
+    function countWords(str) {
+      const trimmed = (str || "").trim();
+      return trimmed ? trimmed.split(/\s+/).length : 0;
+    }
+
+    function renderSections() {
+      const container = document.getElementById("sectionsContainer");
+      container.innerHTML = SECTIONS.map((sec, i) => `
+        <div class="section-card">
+          <div class="section-head">
+            <span class="section-title">Section ${i + 1}: ${sec.name}</span>
+            <span class="section-meta" id="wc_${sec.id}">0 words · Attempts: 0</span>
+          </div>
+          <div class="section-guide"><strong>Target:</strong> ${sec.guide}</div>
+          <textarea id="draft_${sec.id}" rows="4" oninput="onSectionInput('${sec.id}')" placeholder="Write or revise your ${sec.name} here..."></textarea>
+          <div class="section-foot">
+            <span class="section-meta">Auto-logged to practice_history.md</span>
+            <button id="btn_${sec.id}" class="pill-btn pill-btn-primary" onclick="reviewSection('${sec.id}')">Review Section</button>
+          </div>
+          <div id="fb_${sec.id}" class="feedback-box" style="display:none;"></div>
+        </div>
+      `).join("");
+    }
+
+    function onSectionInput(secId) {
+      const val = document.getElementById(`draft_${secId}`).value;
+      const wc = countWords(val);
+      const att = state.sectionAttempts[secId];
+      document.getElementById(`wc_${secId}`).innerHTML = `<strong>${wc} words</strong> · Attempts: <strong>${att}</strong>`;
+      updateCombinedPreview();
+    }
+
+    function updateCombinedPreview() {
+      const parts = SECTIONS.map(s => document.getElementById(`draft_${s.id}`).value.trim()).filter(Boolean);
+      const combined = parts.join("\n\n");
+      document.getElementById("combinedPreview").value = combined;
+      document.getElementById("combinedWc").textContent = `${countWords(combined)} words total`;
+    }
+
+    function switchTab(tabName, btn) {
+      document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+      document.querySelectorAll(".tab-pill").forEach(b => b.classList.remove("active"));
+      document.getElementById(`tab-${tabName}`).classList.add("active");
+      btn.classList.add("active");
+      if (tabName === "history") loadHistory();
+    }
+
+    document.getElementById("essayType").addEventListener("change", (e) => {
+      document.getElementById("activeTypeLabel").textContent = `ESSAY TYPE · ${e.target.value}`;
+    });
+
+    async function initConfig() {
+      try {
+        const res = await fetch("/api/config");
+        const data = await res.json();
+        const pill = document.getElementById("keyStatus");
+        if (pill) {
+          if (data.hasDefaultKey) {
+            pill.textContent = `API Key Ready (${data.maskedKey})`;
+          } else {
+            pill.textContent = "Enter Gemini API Key";
+          }
+        }
+        const pathEl = document.getElementById("historyFullPath");
+        if (data.historyPath && pathEl) {
+          pathEl.textContent = data.historyPath;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+      loadHistory();
+    }
+
+    async function generateNewTopic() {
+      showError("");
+      const btn = document.getElementById("generateTopicBtn");
+      const essayType = document.getElementById("essayType").value;
+      const apiKey = document.getElementById("apiKey")?.value || "";
+      const model = document.getElementById("modelSelect").value;
+
+      btn.disabled = true;
+      btn.textContent = "Generating Topic...";
+      try {
+        const res = await fetch("/api/generate-topic", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ apiKey, model, essayType })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Failed to generate topic");
+
+        document.getElementById("topicInput").value = data.topic;
+        document.getElementById("activeTypeLabel").textContent = `ESSAY TYPE · ${essayType}`;
+        const hintBox = document.getElementById("planningHintBox");
+        if (data.planningHint) {
+          hintBox.style.display = "block";
+          hintBox.textContent = "PLANNING HINT:\n" + data.planningHint;
+        } else {
+          hintBox.style.display = "none";
+        }
+      } catch (err) {
+        showError(err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Generate New Topic";
+      }
+    }
+
+    async function reviewSection(secId) {
+      showError("");
+      const sec = SECTIONS.find(s => s.id === secId);
+      const draft = document.getElementById(`draft_${secId}`).value.trim();
+      if (!draft) {
+        showError(`Please write your ${sec.name} draft before clicking Review.`);
+        return;
+      }
+
+      const btn = document.getElementById(`btn_${secId}`);
+      const fbBox = document.getElementById(`fb_${secId}`);
+      btn.disabled = true;
+      btn.textContent = "Reviewing with Gemini...";
+
+      const priorContext = SECTIONS
+        .filter(s => s.id !== secId)
+        .map(s => {
+          const val = document.getElementById(`draft_${s.id}`).value.trim();
+          return val ? `[${s.name}]: ${val}` : "";
+        })
+        .filter(Boolean)
+        .join("\n\n");
+
+      try {
+        const res = await fetch("/api/review", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            apiKey: document.getElementById("apiKey")?.value || "",
+            model: document.getElementById("modelSelect").value,
+            essayType: document.getElementById("essayType").value,
+            topic: document.getElementById("topicInput").value,
+            mode: "section",
+            sectionName: sec.name,
+            sectionGuide: sec.guide,
+            draft,
+            attemptNum: state.sectionAttempts[secId],
+            prevFeedback: state.sectionFeedback[secId],
+            priorContext
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Review failed");
+
+        state.sectionAttempts[secId] += 1;
+        state.sectionFeedback[secId] = data.feedback;
+        fbBox.style.display = "block";
+        fbBox.textContent = data.feedback;
+        onSectionInput(secId);
+        btn.textContent = "Re-evaluate Rewrite";
+        state.historyMd = data.history;
+      } catch (err) {
+        showError(err.message);
+        btn.textContent = state.sectionAttempts[secId] > 0 ? "Re-evaluate Rewrite" : "Review Section";
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    function updateFullWc() {
+      const text = document.getElementById("fullEssayInput").value;
+      const wc = countWords(text);
+      document.getElementById("fullWcBadge").innerHTML =
+        `Total Word Count: <strong>${wc} words</strong> · Attempts: <strong id="fullAttemptCount">${state.fullAttempts}</strong>`;
+    }
+
+    async function reviewFullEssay() {
+      showError("");
+      const draft = document.getElementById("fullEssayInput").value.trim();
+      if (!draft) {
+        showError("Please write your essay before clicking Grade Full Essay.");
+        return;
+      }
+      const btn = document.getElementById("fullReviewBtn");
+      const fbBox = document.getElementById("fullFeedbackBox");
+      btn.disabled = true;
+      btn.textContent = "Grading across all 4 IELTS criteria...";
+
+      try {
+        const res = await fetch("/api/review", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            apiKey: document.getElementById("apiKey")?.value || "",
+            model: document.getElementById("modelSelect").value,
+            essayType: document.getElementById("essayType").value,
+            topic: document.getElementById("topicInput").value,
+            mode: "full",
+            draft,
+            attemptNum: state.fullAttempts,
+            prevFeedback: state.fullFeedback
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Grading failed");
+
+        state.fullAttempts += 1;
+        state.fullFeedback = data.feedback;
+        fbBox.style.display = "block";
+        fbBox.textContent = data.feedback;
+        updateFullWc();
+        btn.textContent = "Re-evaluate Full Essay Rewrite";
+        state.historyMd = data.history;
+      } catch (err) {
+        showError(err.message);
+        btn.textContent = state.fullAttempts > 0 ? "Re-evaluate Full Essay Rewrite" : "Grade Full Essay";
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    async function loadHistory() {
+      try {
+        const res = await fetch("/api/history");
+        const data = await res.json();
+        state.historyMd = data.history || "";
+        document.getElementById("historyContent").textContent = state.historyMd;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function downloadHistory() {
+      const blob = new Blob([state.historyMd || ""], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "practice_history.md";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function startTimer() {
+      if (state.timerInterval) return;
+      state.timerInterval = setInterval(() => {
+        if (state.timerSeconds > 0) {
+          state.timerSeconds--;
+          const m = String(Math.floor(state.timerSeconds / 60)).padStart(2, "0");
+          const s = String(state.timerSeconds % 60).padStart(2, "0");
+          document.getElementById("timerDisplay").textContent = `${m}:${s}`;
+        } else {
+          clearInterval(state.timerInterval);
+          state.timerInterval = null;
+        }
+      }, 1000);
+    }
+
+    function resetTimer() {
+      if (state.timerInterval) {
+        clearInterval(state.timerInterval);
+        state.timerInterval = null;
+      }
+      state.timerSeconds = 40 * 60;
+      document.getElementById("timerDisplay").textContent = "40:00";
+    }
+
+    renderSections();
+    initConfig();
+  </script>
+</body>
+
+</html>
